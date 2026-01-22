@@ -73,8 +73,7 @@ def main(args):
 
     for image_file in os.listdir(args.data_folder):
         image_path = os.path.join(args.data_folder, image_file)
-        # Ensure 3-channel input (model expects RGB)
-        image = np.array(Image.open(image_path).convert("RGB"))
+        image = np.array(Image.open(image_path))
         image = transform(image=image)["image"]
         # Move the channel dimension to the front.
         image = np.transpose(image, (2, 0, 1))
